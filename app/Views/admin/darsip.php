@@ -469,14 +469,13 @@
                                                     <tr>
                                                         <td><?= $key + 1; ?></td>
                                                         <td><?= esc($asm['kd_asesment']); ?></td>
-                                                        <td><?= esc($asm['kd_kat']); ?></td>
                                                         <td><?= esc($asm['nama_asesment']); ?></td>
                                                         <td><?= esc($asm['usia']); ?></td>
                                                         <td><?= esc($asm['hasil_asesment']); ?></td>
                                                         <td><?= esc($asm['keterangan']); ?></td>
                                                         <td>
-                                                            <button class="btn btn-warning text-dark"><i class="ti-pencil"></i></button>
-                                                            <button class="btn btn-danger"><i class="ti-trash"></i></button>
+                                                            <button class="btn btn-warning text-dark" onclick="editASM('<?= esc($asm['kd_asesment']); ?>')"><i class="ti-pencil"></i></button>
+                                                            <button class="btn btn-danger" onclick="deleteASM('<?= esc($asm['kd_asesment']); ?>')"><i class="ti-trash"></i></button>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach ?>
@@ -500,7 +499,7 @@
                                             <select name="kd_kat_asm" id="kd_kat_asm" class="form-control">
                                                 <option value="">Pilih Kategori</option>
                                                 <?php foreach ($datakat as $key => $kategori) : ?>
-                                                    <?php $selected = (old('kd_kat') == $kategori['kd_kat']) ? 'selected' : ''; ?>
+                                                    <?php $selected = (old('kd_kat_asm') == $kategori['kd_kat']) ? 'selected' : ''; ?>
                                                     <option <?= $selected ?> value="<?= esc($kategori['kd_kat']) ?>"><?= esc($kategori['nama_kat']) ?></option>
                                                 <?php endforeach ?>
                                             </select>
@@ -509,13 +508,13 @@
                                     <div class="form-group row">
                                         <label for="inputNama" class="col-3 col-form-label col-form-label">Nama:</label>
                                         <div class="col-9">
-                                            <input type="text" class="form-control" id="inputNama" name="nama" placeholder="Masukkan nama">
+                                            <input type="text" class="form-control" id="inputNama" value="<?= old('nama'); ?>" name="nama" placeholder="Masukkan nama">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputUsia" class="col-3 col-form-label col-form-label">Usia:</label>
                                         <div class="col-9">
-                                            <input type="text" class="form-control" id="inputUsia" name="usia" placeholder="Masukkan usia" maxlength="3">
+                                            <input type="text" class="form-control" id="inputUsia" value="<?= old('usia'); ?>" name="usia" placeholder="Masukkan usia" maxlength="3">
                                         </div>
                                         <div class="offset-3 col-9 mt-2">
                                             <span class="text-danger d-none" id="error-message-usia"><i class="ti-alert mr-2"></i>Masukkan Angka</span>
@@ -524,13 +523,13 @@
                                     <div class="form-group row">
                                         <label for="inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"></textarea>
+                                            <textarea class="form-control" id="inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"><?= old('hasil'); ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"></textarea>
+                                            <textarea class="form-control" id="inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"><?= old('keterangan'); ?></textarea>
                                         </div>
                                     </div>
                                     <!-- Tambahkan field lainnya sesuai kebutuhan -->
@@ -542,6 +541,7 @@
                                     <?= form_close(); ?>
                                 </div>
 
+                                <!-- EDIT -->
                                 <div class="FormEditASM">
                                     <?= form_open("", ['id' => 'FormEditASM']); ?>
                                     <div class="form-group row">
@@ -578,15 +578,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
+                                        <label for="edit_inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"></textarea>
+                                            <textarea class="form-control" id="edit_inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
+                                        <label for="edit_inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"></textarea>
+                                            <textarea class="form-control" id="edit_inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"></textarea>
                                         </div>
                                     </div>
                                     <!-- Tambahkan field lainnya sesuai kebutuhan -->
@@ -1396,6 +1396,56 @@
                     $('#TabelSKPB').show();
                     $('#FormTabelSKPB').hide();
                     $('#new_preview_file_identitas').hide();
+                } else {
+                    // Tampilkan pesan kesalahan jika data tidak ditemukan
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Data tidak ditemukan!'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                // Tampilkan pesan kesalahan jika terjadi kesalahan AJAX
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terjadi kesalahan saat mengambil data!'
+                });
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // ASM EDIT
+    function editASM(kd_asm) {
+        $.ajax({
+            url: 'Arsip/ambil_data_asm',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                kd_asm: kd_asm
+            },
+            success: function(response) {
+                if (response) {
+
+                    // Isi formulir dengan data yang diterima dari server
+                    $('#edit_kat_asm').val(response.kd_kat );
+                    $('#edit_kdASM').val(response.kd_asesment );
+                    $('#edit_inputNama').val(response.nama_asesment);
+                    $('#edit_inputUsia').val(response.usia);
+                    $('#edit_inputHasil').val(response.hasil_asesment);
+                    $('#edit_inputKeterangan').val(response.keterangan)
+                    // Lanjutkan dengan mengisi input lainnya sesuai kebutuhan
+
+                    // Set action formulir
+                    $('#FormEditASM').attr('action', 'Arsip/editASM/' + response.kd_asm);
+                    // Tampilkan formulir edit
+                    $('#FormEditASM').show();
+                    $('#TambahASM').hide();
+                    $('#TabelASM').show();
+                    $('#FormTabelASM').hide();
+
                 } else {
                     // Tampilkan pesan kesalahan jika data tidak ditemukan
                     Swal.fire({

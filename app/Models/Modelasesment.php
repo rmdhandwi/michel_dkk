@@ -43,8 +43,8 @@ class Modelasesment extends Model
 
     public function getAsmByKd($kd_asm)
     {
-        return $this->select('tbl_asesment.*, tbl_periode.tahun_periode')
-            ->join('tbl_periode', 'tbl_asesment.kd_periode = tbl_periode.kd_periode', 'left')
+        return $this->select('tbl_asesment.*, tbl_kat.kd_kat')
+            ->join('tbl_kat', 'tbl_asesment.kd_kat = tbl_kat.kd_kat', 'left')
             ->where('tbl_asesment.kd_asesment', $kd_asm)
             ->first();
     }

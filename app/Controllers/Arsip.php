@@ -45,7 +45,7 @@ class Arsip extends BaseController
     public function ambil_data_asm()
     {
         $kd_asm = $this->request->getPost('kd_asesment');
-        $data_asm = $this->rab->getAsmByKd($kd_asm);
+        $data_asm = $this->asm->getASMByKd($kd_asm);
         return $this->response->setJSON($data_asm);
     }
 
@@ -505,16 +505,16 @@ class Arsip extends BaseController
     // ASM
     public function tambahASM()
     {
-        $kd_asm = $this->request->getVar('kd_asesment');
+        $kd_asm = $this->request->getVar('KDasm');
         $nama = $this->request->getVar('nama');
-        $kd_kat = $this->request->getVar('kd_kat');
+        $kd_kat = $this->request->getVar('kd_kat_asm');
         $usia = $this->request->getVar('usia');
         $hasil = $this->request->getVar('hasil');
         $keterangan = $this->request->getVar('keterangan');
 
         $validate = [
 
-            'kd_asm' => [
+            'KDasm' => [
                 'label' => 'Kode Asesment',
                 'rules' => 'required',
                 'errors' => [
@@ -522,7 +522,7 @@ class Arsip extends BaseController
                 ]
 
             ],
-            'kd_kat' => [
+            'kd_kat_asm' => [
                 'label' => 'Kategori',
                 'rules' => 'required',
                 'errors' => [
@@ -539,20 +539,26 @@ class Arsip extends BaseController
 
             ],
             'usia' => [
-                'label' => 'Kode Asesment',
+                'label' => 'Usia',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Harus Diisi',
                 ]
 
             ],
-            'kd_asm' => [
-                'label' => 'Kode Asesment',
+            'hasil' => [
+                'label' => 'Hasil',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Harus Diisi',
                 ]
-
+            ],
+            'keterangan' => [
+                'label' => 'Keterangan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
             ],
         ];
 

@@ -45,7 +45,7 @@ $routes->delete('Arsip/hapusRAB/(:segment)', 'Arsip::hapusRAB/$1');
 
 $routes->post('Arsip/tambahASM', 'Arsip::tambahASM');
 $routes->post('Arsip/editASM/(:segment)', 'Arsip::editASM/$1');
-$routes->post('Arsip/ambil_data_aSM', 'Arsip::ambil_data_aSM');
+$routes->post('Arsip/ambil_data_asm', 'Arsip::ambil_data_asm');
 $routes->delete('Arsip/hapusASM/(:segment)', 'Arsip::hapusASM/$1');
 
 $routes->get('User', 'User::index');
