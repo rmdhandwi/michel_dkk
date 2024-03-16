@@ -15,7 +15,8 @@ class Modelasesment extends Model
         'nama_asesment',
         'usia',
         'hasil_asesment',
-        'keterangan'
+        'keterangan',
+        'file_asesment'
     ];
 
     public function KDasm()
@@ -26,11 +27,11 @@ class Modelasesment extends Model
             $lastPri = $lastRecord['kd_asesment'];
             $lastNumber = intval(substr($lastPri, 3));
             $newNumber = $lastNumber + 1;
-            $newrab = 'ASM' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
+            $newasm = 'ASM' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
         } else {
-            $newrab = 'ASM0001';
+            $newasm = 'ASM0001';
         }
-        return $newrab;
+        return $newasm;
     }
 
     public function allData()

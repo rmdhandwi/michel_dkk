@@ -40,6 +40,12 @@ abstract class BaseController extends Controller
     protected $skpb;
     protected $rab;
     protected $asm;
+    protected $tbk;
+    protected $ins;
+    protected $bas;
+    protected $spj;
+    protected $dos;
+    protected $sui;
 
 
     /**

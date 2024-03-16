@@ -166,3 +166,128 @@ INFO - 2024-03-16 15:50:34 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-03-16 15:50:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-03-16 15:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-03-16 15:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-16 16:40:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-16 16:40:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-16 17:13:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 17:13:37 --> Undefined variable $tabletbk
+in APPPATH\Views\admin\darsip.php on line 643.
+ 1 APPPATH\Views\admin\darsip.php(643): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tabletbk', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 643)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(28): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 17:50:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 17:50:12 --> Undefined variable $tabletbk
+in APPPATH\Views\admin\darsip.php on line 643.
+ 1 APPPATH\Views\admin\darsip.php(643): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tabletbk', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 643)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(28): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 17:50:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 17:50:15 --> Undefined variable $tabletbk
+in APPPATH\Views\admin\darsip.php on line 643.
+ 1 APPPATH\Views\admin\darsip.php(643): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tabletbk', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 643)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(28): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 18:01:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 18:01:15 --> Undefined array key "kd_tbk"
+in APPPATH\Views\admin\darsip.php on line 646.
+ 1 APPPATH\Views\admin\darsip.php(646): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kd_tbk"', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 646)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(31): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 18:02:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 18:02:08 --> Undefined array key "kd_tbk"
+in APPPATH\Views\admin\darsip.php on line 646.
+ 1 APPPATH\Views\admin\darsip.php(646): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kd_tbk"', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 646)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(31): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 18:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 18:02:20 --> Undefined array key "nama_tbk"
+in APPPATH\Views\admin\darsip.php on line 646.
+ 1 APPPATH\Views\admin\darsip.php(646): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_tbk"', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 646)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(31): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 18:03:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 18:03:03 --> Undefined array key "kd_tbk"
+in APPPATH\Views\admin\darsip.php on line 646.
+ 1 APPPATH\Views\admin\darsip.php(646): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kd_tbk"', 'C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php', 646)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\michel_dkk\\app\\Views\\admin\\darsip.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/darsip', [], true)
+ 5 APPPATH\Controllers\Arsip.php(31): view('admin/darsip', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 19:49:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 19:49:51 --> Call to a member function Alldata() on null
+in APPPATH\Controllers\Arsip.php on line 27.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 20:39:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 20:39:43 --> Call to a member function Alldata() on null
+in APPPATH\Controllers\Arsip.php on line 27.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 20:41:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 20:41:37 --> Call to a member function Alldata() on null
+in APPPATH\Controllers\Arsip.php on line 27.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')
+INFO - 2024-03-16 20:43:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-16 20:43:18 --> Call to a member function Alldata() on null
+in APPPATH\Controllers\Arsip.php on line 27.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Arsip->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Arsip))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\michel_dkk\\public\\index.php')

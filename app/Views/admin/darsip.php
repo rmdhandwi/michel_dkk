@@ -473,6 +473,7 @@
                                                         <td><?= esc($asm['usia']); ?></td>
                                                         <td><?= esc($asm['hasil_asesment']); ?></td>
                                                         <td><?= esc($asm['keterangan']); ?></td>
+                                                        <td><?= esc($asm['']); ?></td>
                                                         <td>
                                                             <button class="btn btn-warning text-dark" onclick="editASM('<?= esc($asm['kd_asesment']); ?>')"><i class="ti-pencil"></i></button>
                                                             <button class="btn btn-danger" onclick="deleteASM('<?= esc($asm['kd_asesment']); ?>')"><i class="ti-trash"></i></button>
@@ -532,6 +533,12 @@
                                             <textarea class="form-control" id="inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"><?= old('keterangan'); ?></textarea>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
+                                        <div class="col-9">
+                                            <input type="file" class="form-control-file" id="inputFile" name="file_asesment">
+                                        </div>
+                                    </div>
                                     <!-- Tambahkan field lainnya sesuai kebutuhan -->
                                     <div class="form-group row">
                                         <div class="col-sm-8 offset-sm-4 col-md-9 offset-md-3">
@@ -580,13 +587,19 @@
                                     <div class="form-group row">
                                         <label for="edit_inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="edit_inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"></textarea>
+                                            <textarea class="form-control" id="edit_inputHasil" name="edit_hasil" placeholder="Masukkan hasil asesmen"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="edit_inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="edit_inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"></textarea>
+                                            <textarea class="form-control" id="edit_inputKeterangan" name="edit_keterangan" placeholder="Masukkan keterangan"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
+                                        <div class="col-9">
+                                            <input type="file" class="form-control-file" id="edit_inputFile" name="edit_file_asesment">
                                         </div>
                                     </div>
                                     <!-- Tambahkan field lainnya sesuai kebutuhan -->
@@ -613,74 +626,239 @@
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="accordion-content accordion-desc">
-                                <?= form_open(""); ?>
                                 <div class="form-group row">
-                                    <label for="inputKasus" class="col-3 col-form-label col-form-label">Nama Kasus:</label>
-                                    <div class="col-9">
-                                        <input type="text" class="form-control" id="inputKasus" name="kasus" placeholder="Masukkan nama kasus">
+                                    <div class="ml-auto mt-2">
+                                        <button type="button" class="btn btn-primary btn-round" id="TabelASM"><i class="ti-bar-chart mr-1"></i>Data Tabel</button>
+                                        <button type="button" class="btn btn-primary btn-round" id="TambahASM"><i class="ti-plus mr-1"></i>Tambah Data</button>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="inputTanggal" class="col-3 col-form-label col-form-label">Tanggal:</label>
-                                    <div class="col-9">
-                                        <input type="date" class="form-control" id="inputTanggal" name="tanggal" placeholder="Masukkan tanggal">
+                                <!-- Table  -->
+                                <div id="FormTabelTBK">
+                                    <div class="table-responsive">
+                                        <table class="table" id="myTableTBK">
+                                            <thead class="table-info">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Kode Temu Bahas Kasus</th>
+                                                    <th>Nama Kasus</th>
+                                                    <th>Tanggal Kasus</th>
+                                                    <th>Nama Peserta</th>
+                                                    <th>Jabatan Peserta</th>
+                                                    <th>Peran Peserta</th>
+                                                    <th>Deskripsi</th>
+                                                    <th>Rekomendasi</th>
+                                                    <th>Tindak Lanjut</th>
+                                                    <th>Kesimpulan</th>
+                                                    <th>File</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($tabletbk as $key => $tbk) : ?>
+                                                    <tr>
+                                                        <td><?= $key + 1; ?></td>
+                                                        <td><?= esc($tbk['kd_tbk']); ?></td>
+                                                        <td><?= esc($tbk['nama_tbk']); ?></td>
+                                                        <td><?= esc($tbk['tgl_kasus']); ?></td>
+                                                        <td><?= esc($tbk['nama_peserta']); ?></td>
+                                                        <td><?= esc($tbk['jabatan_peserta']); ?></td>
+                                                        <td><?= esc($tbk['peran_peserta']); ?></td>
+                                                        <td><?= esc($tbk['deskripsi']); ?></td>
+                                                        <td><?= esc($tbk['rekomendasi']); ?></td>
+                                                        <td><?= esc($tbk['tindaklanjut']); ?></td>
+                                                        <td><?= esc($tbk['kesimpulan']); ?></td>
+                                                        <td><?= esc($tbk['file']); ?></td>
+                                                        <td>
+                                                            <button class="btn btn-warning text-dark" onclick="editTBK('<?= esc($tbk['kd_bahaskasus']); ?>')"><i class="ti-pencil"></i></button>
+                                                            <button class="btn btn-danger" onclick="deleteTBK('<?= esc($tbk['kd_bahaskasus']); ?>')"><i class="ti-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <!-- Tambah Peserta -->
-                                <div class="form-group row" id="peserta1">
-                                    <label for="inputPeserta" class="col-3 col-form-label">Peserta:</label>
-                                    <div class="col-9">
-                                        <input type="text" class="form-control" name="nama[]" placeholder="Nama">
-                                        <br>
-                                        <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
-                                        <br>
-                                        <input type="text" class="form-control" name="peran[]" placeholder="Peran">
+
+                                <!-- TAMBAH -->
+                                <div class="FormTambahTBK">
+                                    <?= form_open("Arsip/tambahTBK", ['id' => 'FormTambahTBK']); ?>
+                                    <div class="form-group row">
+                                        <label for="KDtbk" class="col-3 col-form-label col-form-label">Kode Asesment:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="KDtbk" name="KDtbk" value="<?= $KDtbk; ?>" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-3"></div>
-                                    <div class="col-9">
-                                        <button type="button" class="btn btn-primary" onclick="tambahPeserta()">Tambah Peserta</button>
+                                    <div class="form-group row">
+                                        <label for="kd_kat_tbk" class="col-3">Kode Kategori</label>
+                                        <div class="col-9">
+                                            <select name="kd_kat_tbk" id="kd_kat_tbk" class="form-control">
+                                                <option value="">Pilih Kategori</option>
+                                                <?php foreach ($datakat as $key => $kategori) : ?>
+                                                    <?php $selected = (old('kd_kat_tbk') == $kategori['kd_kat']) ? 'selected' : ''; ?>
+                                                    <option <?= $selected ?> value="<?= esc($kategori['kd_kat']) ?>"><?= esc($kategori['nama_kat']) ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Tambah Peserta -->
-                                <div class="form-group row">
-                                    <label for="inputDeskripsiKasus" class="col-3 col-form-label col-form-label">Deskripsi Kasus:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputDeskripsiKasus" name="deskripsikasus" placeholder="Deskripsi kasus"></textarea>
+                                    <div class="form-group row">
+                                        <label for="inputKasus" class="col-3 col-form-label col-form-label">Nama Kasus:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="inputKasus" value="<?= old('kasus'); ?>" name="kasus" placeholder="Masukkan nama kasus">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputRekomendasi" class="col-3 col-form-label col-form-label">Rekomendasi:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputRekomendasi" name="rekomendasi" placeholder="Masukkan Rekomendasi"></textarea>
+                                    <div class="form-group row">
+                                        <label for="inputTanggal" class="col-3 col-form-label col-form-label">Tanggal:</label>
+                                        <div class="col-9">
+                                            <input type="date" class="form-control" id="inputTanggal" value="<?= old('tanggal'); ?>" name="tanggal" placeholder="Masukkan tanggal">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputTindakLanjut" class="col-3 col-form-label col-form-label">Tindak Lanjut:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputTindakLanjut" name="tindaklanjut" placeholder="Tindak Lanjut"></textarea>
+                                    <!-- Tambah Peserta -->
+                                    <div class="form-group row" id="peserta1">
+                                        <label for="inputPeserta" class="col-3 col-form-label">Peserta:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="inputNama" value="<?= old('tbk_nama'); ?>" name="tbk_nama" placeholder="Nama">
+                                            <br>
+                                            <input type="text" class="form-control" id="inputJabatan" value="<?= old('tbk_jabatan'); ?>" name="tbk_jabatan" placeholder="Jabatan">
+                                            <br>
+                                            <input type="text" class="form-control" id="inputPeran" value="<?= old('tbk_peran'); ?>" name="tbk_peran" placeholder="Peran">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputKesimpulan" class="col-3 col-form-label col-form-label">Kesimpulan:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputKesimpulan" name="Kesimpulan" placeholder="Masukkan Kesimpulan"></textarea>
+                                    <div class="form-group row">
+                                        <div class="col-3"></div>
+                                        <div class="col-9">
+                                            <button type="button" class="btn btn-primary" onclick="tambahPeserta()">Tambah Peserta</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
-                                    <div class="col-9">
-                                        <input type="file" class="form-control-file" id="inputFile" name="lampiran">
+                                    <!-- Tambah Peserta -->
+
+                                    <div class="form-group row">
+                                        <label for="inputDeskripsiKasus" class="col-3 col-form-label col-form-label">Deskripsi Kasus:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputDeskripsiKasus" name="deskripsikasus" placeholder="Deskripsi kasus"><?= old('deskripsikasus'); ?></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Tambahkan field lainnya sesuai kebutuhan -->
-                                <div class="form-group row">
-                                    <div class="col-sm-8 offset-sm-4 col-md-10 offset-md-2">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <div class="form-group row">
+                                        <label for="inputRekomendasi" class="col-3 col-form-label col-form-label">Rekomendasi:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputRekomendasi" name="rekomendasi" placeholder="Masukkan Rekomendasi"><?= old('rekomendasi'); ?></textarea>
+                                        </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="inputTindakLanjut" class="col-3 col-form-label col-form-label">Tindak Lanjut:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputTindakLanjut" name="tindaklanjut" placeholder="Tindak Lanjut"><?= old('tindaklanjut'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputKesimpulan" class="col-3 col-form-label col-form-label">Kesimpulan:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputKesimpulan" name="kesimpulan" placeholder="Masukkan Kesimpulan"><?= old('kesimpulan'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
+                                        <div class="col-9">
+                                            <input type="file" class="form-control-file" id="inputFile" value="<?= old('tbk_file'); ?>" name="tbk_file">
+                                        </div>
+                                    </div>
+                                    <!-- Tambahkan field lainnya sesuai kebutuhan -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-8 offset-sm-4 col-md-10 offset-md-2">
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
                                 </div>
-                                <?= form_close(); ?>
+
+                                <!-- EDIT -->
+                                <div class="FormEditTBK">
+                                    <?= form_open("Arsip/editTBK", ['id' => 'FormEditTBK']); ?>
+                                    <div class="form-group row">
+                                        <label for="KDtbk" class="col-3 col-form-label col-form-label">Kode Asesment:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_KDtbk" name="edit_KDtbk" value="<?= $KDtbk; ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_kat_tbk" class="col-3">Kode Kategori</label>
+                                        <div class="col-9">
+                                            <select name="edit_kat_tbk" id="edit_kat_tbk" class="form-control">
+                                                <option value="">Pilih Kategori</option>
+                                                <?php foreach ($datakat as $key => $kategori) : ?>
+                                                    <?php $selected = (old('kd_kat') == $kategori['kd_kat']) ? 'selected' : ''; ?>
+                                                    <option <?= $selected ?> value="<?= esc($kategori['kd_kat']) ?>"><?= esc($kategori['nama_kat']) ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputKasus" class="col-3 col-form-label col-form-label">Nama Kasus:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_inputKasus" name="edit_kasus" placeholder="Masukkan nama kasus">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputTanggal" class="col-3 col-form-label col-form-label">Tanggal:</label>
+                                        <div class="col-9">
+                                            <input type="date" class="form-control" id="edit_inputTanggal" name="edit_tanggal" placeholder="Masukkan tanggal">
+                                        </div>
+                                    </div>
+                                    <!-- Tambah Peserta -->
+                                    <div class="form-group row" id="peserta1">
+                                        <label for="inputPeserta" class="col-3 col-form-label">Peserta:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_inputNama" name="edit_tbk_nama" placeholder="Nama">
+                                            <br>
+                                            <input type="text" class="form-control" id="edit_inputJabatan" name="edit_tbk_jabatan" placeholder="Jabatan">
+                                            <br>
+                                            <input type="text" class="form-control" id="edit_inputPeran" name="edit_tbk_peran" placeholder="Peran">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-3"></div>
+                                        <div class="col-9">
+                                            <button type="button" class="btn btn-primary" onclick="tambahPeserta()">Tambah Peserta</button>
+                                        </div>
+                                    </div>
+                                    <!-- Tambah Peserta -->
+
+                                    <div class="form-group row">
+                                        <label for="edit_inputDeskripsiKasus" class="col-3 col-form-label col-form-label">Deskripsi Kasus:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputDeskripsiKasus" name="edit_deskripsikasus" placeholder="Deskripsi kasus"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputRekomendasi" class="col-3 col-form-label col-form-label">Rekomendasi:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputRekomendasi" name="edit_rekomendasi" placeholder="Masukkan Rekomendasi"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputTindakLanjut" class="col-3 col-form-label col-form-label">Tindak Lanjut:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputTindakLanjut" name="edit_tindaklanjut" placeholder="Tindak Lanjut"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputKesimpulan" class="col-3 col-form-label col-form-label">Kesimpulan:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputKesimpulan" name="edit_kesimpulan" placeholder="Masukkan Kesimpulan"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
+                                        <div class="col-9">
+                                            <input type="file" class="form-control-file" id="edit_inputFile" name="edit_tbk_file">
+                                        </div>
+                                    </div>
+                                    <!-- Tambahkan field lainnya sesuai kebutuhan -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-8 offset-sm-4 col-md-10 offset-md-2">
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -697,50 +875,181 @@
                         </div>
                         <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                             <div class="accordion-content accordion-desc">
-                                <?= form_open(""); ?>
                                 <div class="form-group row">
-                                    <label for="inputINtervensi" class="col-3 col-form-label col-form-label">Judul Intervensi:</label>
-                                    <div class="col-9">
-                                        <input type="text" class="form-control" id="inputIntervensi" name="intervensi" placeholder="Masukkan judul intervensi">
+                                    <div class="ml-auto mt-2">
+                                        <button type="button" class="btn btn-primary btn-round" id="TabelINS"><i class="ti-bar-chart mr-1"></i>Data Tabel</button>
+                                        <button type="button" class="btn btn-primary btn-round" id="TambahINS"><i class="ti-plus mr-1"></i>Tambah Data</button>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="inputTanggalIntervensi" class="col-3 col-form-label col-form-label">Tanggal:</label>
-                                    <div class="col-9">
-                                        <input type="date" class="form-control" id="inputTanggalIntervensi" name="tanggalintervensi" placeholder="Masukkan tanggal">
+                                <!-- Table  -->
+                                <div id="FormTabelINS">
+                                    <div class="table-responsive">
+                                        <table class="table" id="myTableINS">
+                                            <thead class="table-info">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Kode Intervensi</th>
+                                                    <th>Intervensi</th>
+                                                    <th>Tanggal Intervensi</th>
+                                                    <th>Hasil</th>
+                                                    <th>Kesimpulan</th>
+                                                    <th>Tindak Lanjut</th>
+                                                    <th>File</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($tableins as $key => $ins) : ?>
+                                                    <tr>
+                                                        <td><?= $key + 1; ?></td>
+                                                        <td><?= esc($ins['kd_ins']); ?></td>
+                                                        <td><?= esc($ins['nama_intervensi']); ?></td>
+                                                        <td><?= esc($ins['tgl_intervensi']); ?></td>
+                                                        <td><?= esc($ins['hasil_intervensi']); ?></td>
+                                                        <td><?= esc($ins['kesimpulan_intervensi']); ?></td>
+                                                        <td><?= esc($ins['tindaklanjut_intervensi']); ?></td>
+                                                        <td><?= esc($ins['file_intervensi']); ?></td>
+                                                        <td>
+                                                            <button class="btn btn-warning text-dark" onclick="editINS('<?= esc($ins['kd_bahaskasus']); ?>')"><i class="ti-pencil"></i></button>
+                                                            <button class="btn btn-danger" onclick="deleteINS('<?= esc($ins['kd_bahaskasus']); ?>')"><i class="ti-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="inputHasil" class="col-3 col-form-label col-form-label">Hasil Intervensi:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputHasil" name="hasil" placeholder="Masukkan hasil intervensi"></textarea>
+
+                                <!-- TAMBAH -->
+                                <div class="FormTambahINS">
+                                    <?= form_open("Arsip/tambahINS", ['id' => 'FormTambahINS']); ?>
+                                    <div class="form-group row">
+                                        <label for="KDins" class="col-3 col-form-label col-form-label">Kode Asesment:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="KDins" name="KDins" value="<?= $KDins; ?>" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputKesimpulan" class="col-3 col-form-label col-form-label">Kesimpulan atau Catatan:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputKesimpulan" name="kesimpulan" placeholder="Masukkan kesimpulan atau catatan"></textarea>
+                                    <div class="form-group row">
+                                        <label for="kd_kat_ins" class="col-3">Kode Kategori</label>
+                                        <div class="col-9">
+                                            <select name="kd_kat_ins" id="kd_kat_ins" class="form-control">
+                                                <option value="">Pilih Kategori</option>
+                                                <?php foreach ($datakat as $key => $kategori) : ?>
+                                                    <?php $selected = (old('kd_kat_ins') == $kategori['kd_kat']) ? 'selected' : ''; ?>
+                                                    <option <?= $selected ?> value="<?= esc($kategori['kd_kat']) ?>"><?= esc($kategori['nama_kat']) ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputTindakLanjut" class="col-3 col-form-label col-form-label">Tindak Lanjut:</label>
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="inputTindakLanjut" name="tindaklanjut" placeholder="Tindak lanjut"></textarea>
+                                    <div class="form-group row">
+                                        <label for="inputINtervensi" class="col-3 col-form-label col-form-label">Judul Intervensi:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="inputIntervensi" value="<?= old('nama_intervensi'); ?>" name="nama_intervensi" placeholder="Masukkan judul intervensi">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
-                                    <div class="col-9">
-                                        <input type="file" class="form-control-file" id="inputFile" name="lampiran">
+                                    <div class="form-group row">
+                                        <label for="inputTglIntervensi" class="col-3 col-form-label col-form-label">Tanggal:</label>
+                                        <div class="col-9">
+                                            <input type="date" class="form-control" id="inputTglIntervensi" value="<?= old('tgl_intervensi'); ?>" name="tgl_intervensi" placeholder="Masukkan tanggal">
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Tambahkan field lainnya sesuai kebutuhan -->
-                                <div class="form-group row">
-                                    <div class="col-sm-8 offset-sm-4 col-md-10 offset-md-2">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <div class="form-group row">
+                                        <label for="inputHasil" class="col-3 col-form-label col-form-label">Hasil Intervensi:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputHasil" name="hasil_intervensi" placeholder="Masukkan hasil intervensi"><?= old('hasil_intervensi'); ?></textarea>
+                                        </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="inputKesimpulan" class="col-3 col-form-label col-form-label">Kesimpulan atau Catatan:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputKesimpulan" name="kesimpulan_intervensi" placeholder="Masukkan kesimpulan atau catatan"><?= old('kesimpulan_intervensi'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputTindakLanjut" class="col-3 col-form-label col-form-label">Tindak Lanjut:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputTindakLanjut" name="tindaklanjut_intervensi" placeholder="Tindak lanjut"><?= old('tindaklanjut_intervensi'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
+                                        <div class="col-9">
+                                            <input type="file" class="form-control-file" id="inputFile" value="<?= old('file_intervensi'); ?>" name="file_intervensi">
+                                        </div>
+                                    </div>
+                                    <!-- Tambahkan field lainnya sesuai kebutuhan -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-8 offset-sm-4 col-md-10 offset-md-2">
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
                                 </div>
-                                <?= form_close(); ?>
+
+                                <!-- EDIT -->
+                                <div class="FormEditINS">
+                                <?= form_open("Arsip/editINS", ['id' => 'FormEditINS']); ?>
+                                    <div class="form-group row">
+                                        <label for="KDins" class="col-3 col-form-label col-form-label">Kode Asesment:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="KDins" name="KDins" value="<?= $KDins; ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="kd_kat_ins" class="col-3">Kode Kategori</label>
+                                        <div class="col-9">
+                                            <select name="kd_kat_ins" id="kd_kat_ins" class="form-control">
+                                                <option value="">Pilih Kategori</option>
+                                                <?php foreach ($datakat as $key => $kategori) : ?>
+                                                    <?php $selected = (old('kd_kat_ins') == $kategori['kd_kat']) ? 'selected' : ''; ?>
+                                                    <option <?= $selected ?> value="<?= esc($kategori['kd_kat']) ?>"><?= esc($kategori['nama_kat']) ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputIntervensi" class="col-3 col-form-label col-form-label">Judul Intervensi:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_inputIntervensi" value="<?= old('edit_nama_intervensi'); ?>" name="edit_nama_intervensi" placeholder="Masukkan judul intervensi">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputTglIntervensi" class="col-3 col-form-label col-form-label">Tanggal:</label>
+                                        <div class="col-9">
+                                            <input type="date" class="form-control" id="edit_inputTglIntervensi" value="<?= old('edit_tgl_intervensi'); ?>" name="edit_tgl_intervensi" placeholder="Masukkan tanggal">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputHasil" class="col-3 col-form-label col-form-label">Hasil Intervensi:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputHasil" name="edit_hasil_intervensi" placeholder="Masukkan hasil intervensi"><?= old('edit_hasil_intervensi'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputKesimpulan" class="col-3 col-form-label col-form-label">Kesimpulan atau Catatan:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputKesimpulan" name="edit_kesimpulan_intervensi" placeholder="Masukkan kesimpulan atau catatan"><?= old('edit_kesimpulan_intervensi'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputTindakLanjut" class="col-3 col-form-label col-form-label">Tindak Lanjut:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputTindakLanjut" name="edit_tindaklanjut_intervensi" placeholder="Tindak lanjut"><?= old('edit_tindaklanjut_intervensi'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputFile" class="col-3 col-form-label col-form-label">File Lampiran:</label>
+                                        <div class="col-9">
+                                            <input type="file" class="form-control-file" id="edit_inputFile" value="<?= old('editfile_intervensi'); ?>" name="editfile_intervensi">
+                                        </div>
+                                    </div>
+                                    <!-- Tambahkan field lainnya sesuai kebutuhan -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-8 offset-sm-4 col-md-10 offset-md-2">
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1430,8 +1739,8 @@
                 if (response) {
 
                     // Isi formulir dengan data yang diterima dari server
-                    $('#edit_kat_asm').val(response.kd_kat );
-                    $('#edit_kdASM').val(response.kd_asesment );
+                    $('#edit_kat_asm').val(response.kd_kat);
+                    $('#edit_kdASM').val(response.kd_asesment);
                     $('#edit_inputNama').val(response.nama_asesment);
                     $('#edit_inputUsia').val(response.usia);
                     $('#edit_inputHasil').val(response.hasil_asesment);
@@ -1445,6 +1754,112 @@
                     $('#TambahASM').hide();
                     $('#TabelASM').show();
                     $('#FormTabelASM').hide();
+
+                } else {
+                    // Tampilkan pesan kesalahan jika data tidak ditemukan
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Data tidak ditemukan!'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                // Tampilkan pesan kesalahan jika terjadi kesalahan AJAX
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terjadi kesalahan saat mengambil data!'
+                });
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // TBK EDIT
+    function editTBK(kd_tbk) {
+        $.ajax({
+            url: 'Arsip/ambil_data_tbk',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                kd_tbk: kd_tbk
+            },
+            success: function(response) {
+                if (response) {
+
+                    // Isi formulir dengan data yang diterima dari server
+                    $('#edit_kdTBK').val(response.kd_tbk);
+                    $('#edit_kat_tbk').val(response.kd_kat);
+                    $('#edit_inputKasus').val(response.nama_tbk);
+                    $('#edit_inputTanggal').val(response.tgl_kasus);
+                    $('#edit_inputNama').val(response.nama_peserta);
+                    $('#edit_inputJabatan').val(response.jabatan_peserta);
+                    $('#edit_inputPeran').val(response.peran_peserta);
+                    $('#edit_inputDeskripsiKasus').val(response.deskripsi)
+                    $('#edit_inputRekomendasi').val(response.rekomendasi)
+                    $('#edit_inputTindakLanjut').val(response.tindaklanjut)
+                    $('#edit_inputKesimpulan').val(response.kesimpulan)
+                    $('#edit_inputFile').val(response.tbk_file)
+                    // Lanjutkan dengan mengisi input lainnya sesuai kebutuhan
+
+                    // Set action formulir
+                    $('#FormEditTBK').attr('action', 'Arsip/editTBK/' + response.kd_tbk);
+                    // Tampilkan formulir edit
+                    $('#FormEditTBK').show();
+                    $('#TambahTBK').hide();
+                    $('#TabelTBK').show();
+                    $('#FormTabelTBK').hide();
+
+                } else {
+                    // Tampilkan pesan kesalahan jika data tidak ditemukan
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Data tidak ditemukan!'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                // Tampilkan pesan kesalahan jika terjadi kesalahan AJAX
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terjadi kesalahan saat mengambil data!'
+                });
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // INS EDIT
+    function editTBK(kd_ins) {
+        $.ajax({
+            url: 'Arsip/ambil_data_ins',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                kd_ins: kd_ins
+            },
+            success: function(response) {
+                if (response) {
+
+                    // Isi formulir dengan data yang diterima dari server
+                    $('#edit_kat_ins').val(response.kd_kat);
+                    $('#edit_kdINS').val(response.kd_asesment);
+                    $('#edit_inputNama').val(response.nama_asesment);
+                    $('#edit_inputUsia').val(response.usia);
+                    $('#edit_inputHasil').val(response.hasil_asesment);
+                    $('#edit_inputKeterangan').val(response.keterangan)
+                    // Lanjutkan dengan mengisi input lainnya sesuai kebutuhan
+
+                    // Set action formulir
+                    $('#FormEditINS').attr('action', 'Arsip/editINS/' + response.kd_ins);
+                    // Tampilkan formulir edit
+                    $('#FormEditINS').show();
+                    $('#TambahINS').hide();
+                    $('#TabelINS').show();
+                    $('#FormTabelINS').hide();
 
                 } else {
                     // Tampilkan pesan kesalahan jika data tidak ditemukan

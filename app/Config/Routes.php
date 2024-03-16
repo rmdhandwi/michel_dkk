@@ -48,6 +48,16 @@ $routes->post('Arsip/editASM/(:segment)', 'Arsip::editASM/$1');
 $routes->post('Arsip/ambil_data_asm', 'Arsip::ambil_data_asm');
 $routes->delete('Arsip/hapusASM/(:segment)', 'Arsip::hapusASM/$1');
 
+$routes->post('Arsip/tambahTBK', 'Arsip::tambahTBK');
+$routes->post('Arsip/editTBK/(:segment)', 'Arsip::editTBK/$1');
+$routes->post('Arsip/ambil_data_tbk', 'Arsip::ambil_data_tbk');
+$routes->delete('Arsip/hapusTBK/(:segment)', 'Arsip::hapusTBK/$1');
+
+$routes->post('Arsip/tambahINS', 'Arsip::tambahINS');
+$routes->post('Arsip/editINS/(:segment)', 'Arsip::editINS/$1');
+$routes->post('Arsip/ambil_data_ins', 'Arsip::ambil_data_ins');
+$routes->delete('Arsip/hapusINS/(:segment)', 'Arsip::hapusINS/$1');
+
 $routes->get('User', 'User::index');
 $routes->post('User/tambah', 'User::tambah');
 $routes->post('User/edit/(:segment)', 'User::edit/$1');
