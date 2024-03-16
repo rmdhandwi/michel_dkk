@@ -546,7 +546,7 @@ class Arsip extends BaseController
                 ]
 
             ],
-            'kd_asm' => [                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+            'kd_asm' => [
                 'label' => 'Kode Asesment',
                 'rules' => 'required',
                 'errors' => [
@@ -556,23 +556,21 @@ class Arsip extends BaseController
             ],
         ];
 
-        if(!$this->validate($validate))
-        {
+        if (!$this->validate($validate)) {
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-        }else{
+        } else {
 
             $data = [
                 'kd_asesment'   => $kd_asm,
                 'kd_kat'        => $kd_kat,
                 'nama_asesment' => $nama,
                 'usia'          => $usia,
-                'hasil_asesment'=> $hasil,
-                'keterangan'    => $keterangan 
+                'hasil_asesment' => $hasil,
+                'keterangan'    => $keterangan
             ];
 
             $this->asm->insert($data);
             session()->setFlashdata('success', 'Data Berhasil Ditambahkan');
-
         }
         return redirect()->to(base_url('Arsip'))->withInput();
     }

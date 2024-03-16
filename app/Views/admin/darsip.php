@@ -541,6 +541,62 @@
                                     </div>
                                     <?= form_close(); ?>
                                 </div>
+
+                                <div class="FormEditASM">
+                                    <?= form_open("", ['id' => 'FormEditASM']); ?>
+                                    <div class="form-group row">
+                                        <label for="edit_KDasm" class="col-3 col-form-label col-form-label">Kode Asesment:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_KDasm" name="edit_KDasm" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_kat_asm" class="col-3">Kode Kategori</label>
+                                        <div class="col-9">
+                                            <select name="edit_kat_asm" id="edit_kat_asm" class="form-control">
+                                                <option value="">Pilih Kategori</option>
+                                                <?php foreach ($datakat as $key => $kategori) : ?>
+                                                    <?php $selected = (old('kd_kat') == $kategori['kd_kat']) ? 'selected' : ''; ?>
+                                                    <option <?= $selected ?> value="<?= esc($kategori['kd_kat']) ?>"><?= esc($kategori['nama_kat']) ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputNama" class="col-3 col-form-label col-form-label">Nama:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_inputNama" name="edit_nama" placeholder="Masukkan nama">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputUsia" class="col-3 col-form-label col-form-label">Usia:</label>
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="edit_inputUsia" name="edit_usia" placeholder="Masukkan usia" maxlength="3">
+                                        </div>
+                                        <div class="offset-3 col-9 mt-2">
+                                            <span class="text-danger d-none" id="error-message-usia"><i class="ti-alert mr-2"></i>Masukkan Angka</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- Tambahkan field lainnya sesuai kebutuhan -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-8 offset-sm-4 col-md-9 offset-md-3">
+                                            <button type="submit" class="btn btn-success"><i class="ti-save mr-2"></i>Simpan</button>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
