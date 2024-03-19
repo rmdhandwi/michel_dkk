@@ -13,9 +13,9 @@ class Modelasesment extends Model
         'kd_asesment',
         'kd_kat',
         'nama_asesment',
-        'usia',
         'hasil_asesment',
         'keterangan',
+        'rekomendasi_asesment',
         'file_asesment'
     ];
 

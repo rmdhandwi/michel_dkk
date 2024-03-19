@@ -458,9 +458,9 @@
                                                     <th>No</th>
                                                     <th>Kode Asesment</th>
                                                     <th>Nama</th>
-                                                    <th>Usia</th>
                                                     <th>Hasil Asesment</th>
                                                     <th>keterangan</th>
+                                                    <th>Rekomendasi</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -470,9 +470,9 @@
                                                         <td><?= $key + 1; ?></td>
                                                         <td><?= esc($asm['kd_asesment']); ?></td>
                                                         <td><?= esc($asm['nama_asesment']); ?></td>
-                                                        <td><?= esc($asm['usia']); ?></td>
                                                         <td><?= esc($asm['hasil_asesment']); ?></td>
-                                                        <td><?= esc($asm['keterangan']); ?></td>
+                                                        <td><?= esc($asm['hasil_asesment']); ?></td>
+                                                        <td><?= esc($asm['rekomendasi asesment']); ?></td>
                                                         <td>
                                                             <button class="btn btn-warning text-dark" onclick="editASM('<?= esc($asm['kd_asesment']); ?>')"><i class="ti-pencil"></i></button>
                                                             <button class="btn btn-danger" onclick="deleteASM('<?= esc($asm['kd_asesment']); ?>')"><i class="ti-trash"></i></button>
@@ -512,15 +512,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputUsia" class="col-3 col-form-label col-form-label">Usia:</label>
-                                        <div class="col-9">
-                                            <input type="text" class="form-control" id="inputUsia" value="<?= old('usia'); ?>" name="usia" placeholder="Masukkan usia" maxlength="3">
-                                        </div>
-                                        <div class="offset-3 col-9 mt-2">
-                                            <span class="text-danger d-none" id="error-message-usia"><i class="ti-alert mr-2"></i>Masukkan Angka</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label for="inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
                                         <div class="col-9">
                                             <textarea class="form-control" id="inputHasil" name="hasil" placeholder="Masukkan hasil asesmen"><?= old('hasil'); ?></textarea>
@@ -530,6 +521,12 @@
                                         <label for="inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
                                         <div class="col-9">
                                             <textarea class="form-control" id="inputKeterangan" name="keterangan" placeholder="Masukkan keterangan"><?= old('keterangan'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputRekomendasi" class="col-3 col-form-label col-form-label">Rekomendasi:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="inputRekomendasi" name="rekomendasi" placeholder="Masukkan rekomendasi"><?= old('rekomendasi'); ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -575,15 +572,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="edit_inputUsia" class="col-3 col-form-label col-form-label">Usia:</label>
-                                        <div class="col-9">
-                                            <input type="text" class="form-control" id="edit_inputUsia" name="edit_usia" placeholder="Masukkan usia" maxlength="3">
-                                        </div>
-                                        <div class="offset-3 col-9 mt-2">
-                                            <span class="text-danger d-none" id="error-message-usia"><i class="ti-alert mr-2"></i>Masukkan Angka</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label for="edit_inputHasil" class="col-3 col-form-label col-form-label">Hasil Asesmen:</label>
                                         <div class="col-9">
                                             <textarea class="form-control" id="edit_inputHasil" name="edit_hasil" placeholder="Masukkan hasil asesmen"></textarea>
@@ -593,6 +581,12 @@
                                         <label for="edit_inputKeterangan" class="col-3 col-form-label col-form-label">Keterangan:</label>
                                         <div class="col-9">
                                             <textarea class="form-control" id="edit_inputKeterangan" name="edit_keterangan" placeholder="Masukkan keterangan"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="edit_inputRekomendasi" class="col-3 col-form-label col-form-label">Rekomendasi:</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="edit_inputRekomendasi" name="edit_Rekomendasi" placeholder="Masukkan rekomendasi"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
