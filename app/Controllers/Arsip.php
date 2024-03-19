@@ -51,22 +51,48 @@ class Arsip extends BaseController
     public function ambil_data_asm()
     {
         $kd_asm = $this->request->getPost('kd_asm');
-        $data_asm = $this->asm->getASMByKd($kd_asm);
+        $data_asm = $this->asm->getAsmByKd($kd_asm);
         return $this->response->setJSON($data_asm);
     }
 
     public function ambil_data_tbk()
     {
         $kd_tbk = $this->request->getPost('kd_tbk');
-        $data_tbk = $this->tbk->gettbkByKd($kd_tbk);
+        $data_tbk = $this->tbk->getTbkByKd($kd_tbk);
         return $this->response->setJSON($data_tbk);
     }
 
     public function ambil_data_ins()
     {
         $kd_ins = $this->request->getPost('kd_ins');
-        $data_ins = $this->ins->getinsByKd($kd_ins);
+        $data_ins = $this->ins->getInsByKd($kd_ins);
         return $this->response->setJSON($data_ins);
+    }
+
+    public function ambil_data_bast()
+    {
+        $kd_bast = $this->request->getPost('kd_bast');
+        $data_bast = $this->bast->getBastByKd($kd_bast);
+        return $this->response->setJSON($data_bast);
+    }
+
+    public function ambil_data_spj()
+    {
+        $kd_spj = $this->request->getPost('kd_spj');
+        $data_spj = $this->spj->getSpjByKd($kd_spj);
+        return $this->response->setJSON($data_spj);
+    }
+    public function ambil_data_dos()
+    {
+        $kd_dos = $this->request->getPost('kd_dos');
+        $data_dos = $this->dos->getDosByKd($kd_dos);
+        return $this->response->setJSON($data_dos);
+    }
+    public function ambil_data_sui()
+    {
+        $kd_sui = $this->request->getPost('kd_sui');
+        $data_sui = $this->sui->getSuiByKd($kd_sui);
+        return $this->response->setJSON($data_sui);
     }
 
     // SKPB
@@ -1224,59 +1250,64 @@ class Arsip extends BaseController
         return redirect()->to(base_url('Arsip'));
     }
 
-    // BAS
-    public function tambahBAS()
+    // BAST
+    public function tambahBAST()
     {
-        $kd_bas = $this->request->getVar('KDbas');
-        $nama = $this->request->getVar('nama');
-        $kd_kat = $this->request->getVar('kd_kat_asm');
-        $usia = $this->request->getVar('usia');
-        $hasil = $this->request->getVar('hasil');
-        $keterangan = $this->request->getVar('keterangan');
+        $kd_bast = $this->request->getVar('KDbast');
+        $kd_kat = $this->request->getVar('kd_kat_bast');
+        $tgl_bast = $this->request->getVar('tanggal_bast');
+        $penyerah = $this->request->getVar('penyerah');
+        $deskripsi_bast = $this->request->getVar('deskripsi_bast');
+        $bantuan_bast = $this->request->getVar('bantuan_bast');
+        $keterangan_bast = $this->request->getVar('keterangan_bast');
+        $bast_file = $this->request->getVar('bast_file');
 
         $validate = [
 
-            'KDbas' => [
-                'label' => 'Kode Asesment',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Harus Diisi',
-                ]
-
-            ],
-            'kd_kat_asm' => [
-                'label' => 'Kategori',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Harus Diisi',
-                ]
-
-            ],
-            'nama' => [
-                'label' => 'Nama',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Harus Diisi',
-                ]
-
-            ],
-            'usia' => [
-                'label' => 'Usia',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Harus Diisi',
-                ]
-
-            ],
-            'hasil' => [
-                'label' => 'Hasil',
+            'KDbast' => [
+                'label' => 'Kode BAST',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Harus Diisi',
                 ]
             ],
-            'keterangan' => [
-                'label' => 'Keterangan',
+            'tanggal_bast' => [
+                'label' => 'Tanggal BAST',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'penyerah' => [
+                'label' => 'Penyerah Bantuan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'deskripsi_bast' => [
+                'label' => 'Deskripsi Bast',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'bantuan_bast' => [
+                'label' => 'Bantuan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'keterangan_bast' => [
+                'label' => 'Keterangan BAST',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'bast_file' => [
+                'label' => 'File BAST',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Harus Diisi',
@@ -1289,73 +1320,85 @@ class Arsip extends BaseController
         } else {
 
             $data = [
-                'kd_asesment'   => $kd_bas,
-                'kd_kat'        => $kd_kat,
-                'nama_asesment' => $nama,
-                'usia'          => $usia,
-                'hasil_asesment' => $hasil,
-                'keterangan'    => $keterangan
+                'KDbast'            => $kd_bast,
+                'kd_kat_bast'       => $kd_kat,
+                'tanggal_bast'      => $tgl_bast,
+                'penyerah'          => $penyerah,
+                'deskripsi_bast'    => $deskripsi_bast,
+                'bantuan_bast'      => $bantuan_bast,
+                'keterangan_bast'   => $keterangan_bast,
+                'bast_file'         => $bast_file
             ];
 
-            $this->bas->insert($data);
+            $this->bast->insert($data);
             session()->setFlashdata('success', 'Data Berhasil Ditambahkan');
         }
         return redirect()->to(base_url('Arsip'))->withInput();
     }
 
-    public function editBAS($kd_bas)
+    public function editBAST($kd_bast)
     {
 
-        $bastData = $this->bas->find($kd_bas);
+        $bastData = $this->bast->find($kd_bast);
 
-        $kd_bas         = $this->request->getVar('edit_kd_bas');
-        $kd_kat         = $this->request->getVar('edit_kat_bas');
-        $nama_kegiatan  = $this->request->getVar('edit_kegiatan');
-        $tahun          = $this->request->getVar('edit_tahun');
-        $anggaran       = $this->request->getVar('edit_anggaran');
-        $deskripsi      = $this->request->getVar('edit_deskripsi');
-        $file_rab       = $this->request->getFile('edit_file_rab');
+        $kd_bast = $this->request->getVar('edit_KDbast');
+        $kd_kat = $this->request->getVar('edit_kat_bast');
+        $tgl_bast = $this->request->getVar('edit_tgl_bast');
+        $penyerah = $this->request->getVar('edit_penyerah');
+        $deskripsi_bast = $this->request->getVar('edit_deskripsi_bast');
+        $bantuan_bast = $this->request->getVar('edit_bantuan_bast');
+        $keterangan_bast = $this->request->getVar('edit_keterangan_bast');
+        $bast_file = $this->request->getVar('edit_bast_file');
 
         $validate = [
 
-            'edit_kd_bas' => [
-                'label' => 'Kode RAB',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus Diisi'
-                ]
-            ],
-
-            'edit_kegiatan' => [
-                'label' => 'Nama Kegiatan',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus Diisi'
-                ]
-            ],
-
-            'edit_tahun' => [
-                'label' => 'Tahun Anggaran',
+            'edit_KDbast' => [
+                'label' => 'Kode BAST',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Harus Diisi',
                 ]
             ],
-
-            'edit_anggaran' => [
-                'label' => 'Anggaran',
+            'edit_tanggal_bast' => [
+                'label' => 'Tanggal BAST',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Harus Diisi',
                 ]
             ],
-
-            'edit_file_rab' => [
-                'label' => 'Upload File RAB',
-                'rules' => 'max_size[edit_file_rab,1024]|mime_in[edit_file_rab,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
+            'edit_penyerah' => [
+                'label' => 'Penyerah Bantuan',
+                'rules' => 'required',
                 'errors' => [
-                    'max_size'   => 'Ukuran {field} terlalu besar, maksimal 1MB',
-                    'mime_in'    => 'Hanya file {field} dengan format PDF, Excel, atau Word yang diizinkan'
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'edit_deskripsi_bast' => [
+                'label' => 'Deskripsi Bast',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'edit_bantuan_bast' => [
+                'label' => 'Bantuan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'edit_keterangan_bast' => [
+                'label' => 'Keterangan BAST',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
+                ]
+            ],
+            'edit_bast_file' => [
+                'label' => 'File BAST',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Harus Diisi',
                 ]
             ],
         ];
@@ -1364,48 +1407,42 @@ class Arsip extends BaseController
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
         } else {
 
-            $oldFileName = $basData['file_bas'];
+            // $oldFileName = $bastData['bast_file'];
 
-            if ($file_bas->isValid() && !$file_bas->hasMoved()) {
-                if (file_exists('upload/bas/' . $oldFileName)) {
-                    unlink('upload/bas/' . $oldFileName);
-                    session()->setFlashdata('success_foto', 'Foto Lama berhasil dihapus');
-                }
+            // if ($bast_file->isValid() && !$bast_file->hasMoved()) {
+            //     if (file_exists('upload/bast/' . $oldFileName)) {
+            //         unlink('upload/bast/' . $oldFileName);
+            //         session()->setFlashdata('success_foto', 'Foto Lama berhasil dihapus');
+            //     }
 
-                $newFileName = $kd_bas . '_' . $nama_kegiatan . '_fileIdentitas.jpg';
-                $file_bas->move('upload/bas', $newFileName);
-            } else {
-                $newFileName = $oldFileName;
-            }
+            //     $newFileName = $kd_bast . '_' . $nama_kegiatan . '_fileIdentitas.jpg';
+            //     $bast_file->move('upload/bast', $newFileName);
+            // } else {
+            //     $newFileName = $oldFileName;
+            // }
 
             $data = [
-                'kd_bas'        => $kd_bas,
-                'kd_kat'        => $kd_kat,
-                'nama_kegiatan' => $nama_kegiatan,
-                'kd_periode'    => $tahun,
-                'anggaran'      => $anggaran,
-                'deskripsi'     => $deskripsi,
-                'file_rab'      => $newFileName,
+                'edit_KDbast'            => $kd_bast,
+                'edit_kd_kat_bast'       => $kd_kat,
+                'edit_tanggal_bast'      => $tgl_bast,
+                'edit_penyerah'          => $penyerah,
+                'edit_deskripsi_bast'    => $deskripsi_bast,
+                'edit_bantuan_bast'      => $bantuan_bast,
+                'edit_keterangan_bast'   => $keterangan_bast,
+                'edit_bast_file'         => $bast_file
             ];
 
-            $this->bas->update($kd_bas, $data);
+            $this->bast->update($kd_bast, $data);
             session()->setFlashdata('success', 'Data berhasil diupdate');
         }
         return redirect()->to(base_url('Arsip'))->withInput();
     }
 
-    public function hapusBAST($kd_bas)
+    public function hapusBAST($kd_bast)
     {
-        $rabData = $this->bas->find($kd_bas);
+        $bastData = $this->bast->find($kd_bast);
 
-        $datafoto = $rabData['file_rab'];
-
-        if (file_exists('upload/rab/' . $datafoto)) {
-            unlink('upload/rab/' . $datafoto);
-            session()->setFlashdata('success_foto', 'Foto berhasil dihapus');
-        }
-
-        $this->bas->delete($kd_bas);
+        $this->bast->delete($kd_bast);
         session()->setFlashdata('success', 'Data berhasil dihapus');
         return redirect()->to(base_url('Arsip'));
     }
